@@ -40,7 +40,7 @@ def process_text_with_chatgpt(text, prompt_template, model="gpt-4o-mini"):
                 {
                     "role": "system", 
                     "content": ("You are an AI that processes text in order to draw out the main messages "
-                                "relating to the Serbian Government and the parties with which it engages. Aim to be "
+                                "relating to Serbia and its relations with the UK and the rest of the world. Aim to be "
                                 "parsimonious in your summaries but accurate insofar as the main messages are retained. "
                                 "You are writing for a senior executive audience.")
                 },
@@ -104,10 +104,10 @@ def main():
     column_name = "text"  # Column name to process
     new_column_name = "processed_text"  # New column name
     prompt_template = (
-        "Please review the text and provide a summary. The summary should inform the reader of the 2-5 key messages in the text. "
+        "Please review the text and provide a summary. The summary should inform the reader of the at least 2 and at most 5 key messages in the text. "
         "Ensure that the sentiment relating to each legal or natural person is preserved in each key message. "
-        "Please structure the output like this: (1) Put a keyword in [square braces] which describes who or what each key message is about. "
-        "(2) Write a short paragraph, 1-4 sentences, summarising the key message. "
+        "Please structure the output like this: (1) Put a keyword in [square braces] which describes who or what each key message is about. Keep the keywords as clear nouns, e.g. a country name or a concept like 'corruption' "
+        "(2) Write a short paragraph, at least 1 and at most 4 sentences, summarising the key message. "
         "(3) After each key message, put a delimiter #. Only use a # as delimiter. "
         "(4) The maximum length of the output should be no more than 350 words"
         "The text for you to review is: {text}"

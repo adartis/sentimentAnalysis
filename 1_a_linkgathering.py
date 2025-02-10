@@ -134,7 +134,7 @@ def main() -> None:
     It then calls the scraping function to process the Google News RSS feed.
     """
     # Define the search terms for the news query.
-    search_terms = "Serbia Government SNS when:7d"
+    search_terms = "Serbia United Kingdom relations"
     # Specify the output CSV file name.
     csv_filename = "news_results.csv"
     # Set the start date for the articles (in year, month, day format).

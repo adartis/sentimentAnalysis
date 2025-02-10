@@ -9,7 +9,7 @@ df['message_list'] = df['processed_text'].str.split('#')
 
 # Clean each list: strip extra whitespace and remove any empty messages
 df['message_list'] = df['message_list'].apply(
-    lambda msgs: [msg.strip() for msg in msgs if msg.strip()]
+    lambda msgs: [msg.strip() for msg in msgs if msg.strip()] if isinstance(msgs, list) else msgs
 )
 
 # Explode the list so that each message gets its own row

@@ -48,7 +48,7 @@ def main() -> None:
     df = pd.read_csv(INPUT_CSV)
     
     # Check that the required columns exist.
-    required_columns = {"title", "url", "source_name", "date_found"}
+    required_columns = {"title", "url", "source_name", "date_found", "actual_url"}
     # test for columns
     if not required_columns.issubset(df.columns):
         logger.error(f"Input CSV must contain the columns: {required_columns}")
@@ -60,7 +60,7 @@ def main() -> None:
     
     # Loop through each row in the DataFrame.
     for index, row in df.iterrows():
-        url = row["url"]
+        url = row["actual_url"]
         # logging for testing
         logger.info(f"Processing {index+1}/{len(df)}: {url}")
         # Extract the article text from the URL.

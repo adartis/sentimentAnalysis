@@ -1,7 +1,7 @@
 # import os to secure env variable - using .gitignore to prevent upload
 import os
 # openAI package for API
-import openai
+from openai import OpenAI
 # Pandas for dataframe manipulation
 import pandas as pd
 # load environmental variables for API key
@@ -13,7 +13,8 @@ import logging
 
 # Load environment variables (for API key storage)
 load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")  # Set your OpenAI API key
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -34,7 +35,7 @@ def process_text_with_chatgpt(text, prompt_template, model="gpt-4o-mini"):
         prompt = prompt_template.format(text=text)
 
         # Send request to OpenAI API
-        response = openai.ChatCompletion.create(
+        response = client.chat.completions.create(
             model=model,
             messages=[
                 {
@@ -50,7 +51,7 @@ def process_text_with_chatgpt(text, prompt_template, model="gpt-4o-mini"):
         )
 
         # Extract and return the response text
-        return response["choices"][0]["message"]["content"].strip()
+        return response.choices[0].message.content.strip()
 
 
     # exception if error
